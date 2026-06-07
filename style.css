@@ -64,80 +64,115 @@ header .navegacao-primaria li a:hover::after {
     border-bottom: 4px solid #01eeff;
 }
 
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.main-logo {
+    width: 50px;
+    height: auto;
+    border-radius: 8px;
+}
+
 .modal {
-    animation: sideSection .5s ease-in-out forwards;
     display: none;
-    /* Hide the modal by default */
     position: fixed;
-    z-index: 1;
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
-    /* Hide any content that overflows the modal */
-    background-color: rgba(0, 0, 0, 0.5);
-    /* Add a semi-transparent background overlay */
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: flex;
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 20% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    overflow-y: auto;
-    /* Enable vertical scrolling for the modal content */
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 40px;
+    border: 1px solid #333;
+    width: 90%;
     max-width: 500px;
-    border-radius: 10px;
-    /* Adjust the value as per your preference */
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    animation: modalSlideUp 0.4s ease-out;
+}
+
+@keyframes modalSlideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 .modal-content h2 {
     font-family: "Poppins", sans-serif;
-    font-weight: 600;
-    font-size: large;
-    color: #000000;
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: #01eeff;
     text-align: center;
-    /* Align the heading center horizontally */
+    margin-bottom: 10px;
+}
+
+.modal-subtitle {
+    text-align: center;
+    color: #707070;
+    margin-bottom: 30px;
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #707070;
+    font-size: 24px;
     font-weight: bold;
     cursor: pointer;
-    border-radius: 50%;
-    /* Make the close button circular */
+    transition: 0.3s;
 }
 
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+.close:hover {
+    color: #01eeff;
 }
 
 .contact-list {
     list-style: none;
-    padding: 20px;
+    padding: 0;
 }
 
 .contact-list li {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .contact-list li a {
     font-family: 'Poppins', sans-serif;
-    font-size: medium;
-    color: #333;
+    font-size: 1.1rem;
+    color: #e0e0e0;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: 0.3s;
+    padding: 10px;
+    border-radius: 8px;
+    background: #222;
+}
+
+.contact-list li a:hover {
+    background: #333;
+    color: #01eeff;
 }
 
 .contact-list li a i {
-    color: #08c4d1;
-    margin-right: 5px;
+    color: #01eeff;
+    font-size: 1.4rem;
 }
 
 /* Download CV Section */
@@ -150,34 +185,45 @@ header .navegacao-primaria li a:hover::after {
     justify-content: space-around;
     align-items: center;
     gap: 60px;
-    padding: 60px;
+    padding: 80px 60px;
+    min-height: 80vh;
 }
 
 .section-div div {
-    margin-top: 120px;
-    align-self: start;
+    align-self: center;
     display: grid;
     gap: 30px;
 }
 
 .section-div div h2 {
     font-family: "Poppins", sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     color: #f7f7f7;
+    font-size: 2.5rem;
 }
 
 .section-div div p {
     font-family: "Poppins", sans-serif;
-    font-weight: 200;
-    color: #f7f7f7;
+    font-weight: 300;
+    color: #a0a0a0;
+    font-size: 1.2rem;
+    line-height: 1.6;
 }
 
-.section-div div a {
+.btn-primary {
     justify-self: start;
-    color: #f7f7f7;
+    color: #000;
+    background-color: #01eeff;
     padding: 15px 40px;
-    border-radius: 5px;
-    border: 2px solid #f7f7f7;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: 0.3s;
+    border: none;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(1, 238, 255, 0.4);
 }
 
 
@@ -405,59 +451,52 @@ main .sobre {
 .my_service ul li {
     cursor: pointer;
     position: relative;
-    padding: 10px;
-    border-radius: 6px;
+    padding: 30px;
+    border-radius: 12px;
     align-content: center;
     display: grid;
-    gap: 30px;
+    gap: 20px;
     text-align: center;
-    max-width: 300px;
-    height: 300px;
-    background-color: #222;
+    max-width: 320px;
+    min-height: 320px;
+    background: rgba(34, 34, 34, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
 
+.my_service ul li:hover {
+    transform: translateY(-10px);
+    background: rgba(45, 45, 45, 0.8);
+    border-color: #01eeff;
+    box-shadow: 0 10px 30px rgba(1, 238, 255, 0.15);
 }
 
 .my_service ul li i {
-    font-size: 2.7rem;
+    font-size: 3rem;
     color: #01eeff;
+    transition: 0.3s;
+}
+
+.my_service ul li:hover i {
+    transform: scale(1.1);
 }
 
 .my_service ul li h3 {
     color: #fff;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-family: 'Poppins', sans-serif;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .my_service ul li p {
-    color: #707070;
-    font-size: 1.1rem;
+    color: #a0a0a0;
+    font-size: 1rem;
+    line-height: 1.5;
 }
 
-.my_service li::before {
-    content: '';
-    transition: .5s ease-in-out;
-    border-radius: 6px;
-    width: 0px;
-    height: 0px;
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    border-top: 2px solid transparent;
-    border-right: 2px solid transparent;
-}
-
-.my_service li::after {
-    content: '';
-    transition: .5s ease-in-out;
-    border-radius: 6px;
-    width: 0px;
-    height: 0px;
-    position: absolute;
-    bottom: -2px;
-    left: -2px;
-    border-bottom: 2px solid transparent;
-    border-left: 2px solid transparent;
+.my_service li::before, .my_service li::after {
+    display: none; /* Removing old border animation */
 }
 
 .my_service li:hover::before {

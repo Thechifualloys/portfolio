@@ -1,185 +1,155 @@
-function writeTitle() {
-    function activeWorld(element) {
-        const arrText = element.innerHTML.split('');
-        element.innerHTML = '';
-        arrText.forEach((letra, i) => {
-            setTimeout(() => {
-                element.innerHTML += letra;
-            }, 200 * i);
-        })
-    }
+/**
+ * Chiflloy Portfolio Script
+ * Modernized & Optimized
+ */
+
+// Typing Effect for Hero Section
+function initTypingEffect() {
     const title = document.querySelector('.typing');
-    activeWorld(title);
+    if (!title) return;
+
+    const text = title.innerHTML;
+    title.innerHTML = '';
+    
+    const arrText = text.split('');
+    arrText.forEach((letra, i) => {
+        setTimeout(() => {
+            title.innerHTML += letra;
+        }, 100 * i);
+    });
 }
-writeTitle();
 
-// Open the modal when the button is clicked
-document.getElementById("contactBtn").addEventListener("click", function() {
-    document.getElementById("modal").style.display = "block";
-  });
-  
-  // Close the modal when the close button is clicked
-  document.getElementsByClassName("close")[0].addEventListener("click", function() {
-    document.getElementById("modal").style.display = "none";
-  });
-  
+// Modal Management
+function initModal() {
+    const modal = document.getElementById("modal");
+    const contactBtn = document.getElementById("contactBtn");
+    const closeBtn = document.querySelector(".close");
 
-document.getElementById('read-more-link').addEventListener('click', function (event) {
-    event.preventDefault();
-    document.getElementById('collapse-link').classList.remove('hidden');
-    document.getElementById('hidden-paragraphs').classList.toggle('hidden');
-    this.style.display = 'none';
-});
+    if (!modal || !contactBtn) return;
 
-document.getElementById('collapse-link').addEventListener('click', function (event) {
-    event.preventDefault();
-    document.getElementById('hidden-paragraphs').classList.toggle('hidden');
-    document.getElementById('read-more-link').style.display = 'block';
-    this.classList.add('hidden');
-});
-
-window.addEventListener('load', function () {
-    var video = document.getElementById('myVideo');
-
-    video.addEventListener('ended', function () {
-        video.currentTime = 0; // Rewind the video to the beginning
-        video.play(); // Start playing the video again
+    contactBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal.classList.add("active");
     });
 
-    video.play(); // Start playing the video initially
-});
+    closeBtn.addEventListener("click", () => {
+        modal.classList.remove("active");
+    });
 
+    window.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            modal.classList.remove("active");
+        }
+    });
+}
 
-function menuMobile() {
-    const activeMenu = document.querySelector('.fa-bars');
+// "Read More" Toggle Logic
+function initReadMore() {
+    const readMoreLink = document.getElementById('read-more-link');
+    const collapseLink = document.getElementById('collapse-link');
+    const hiddenContent = document.getElementById('hidden-paragraphs');
+
+    if (!readMoreLink || !collapseLink || !hiddenContent) return;
+
+    readMoreLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        hiddenContent.classList.remove('hidden');
+        collapseLink.classList.remove('hidden');
+        readMoreLink.classList.add('hidden');
+    });
+
+    collapseLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        hiddenContent.classList.add('hidden');
+        collapseLink.classList.add('hidden');
+        readMoreLink.classList.remove('hidden');
+    });
+}
+
+// Mobile Menu
+function initMobileMenu() {
+    const menuBtn = document.querySelector('.fa-bars');
     const navMenu = document.querySelector('header .navegacao-primaria');
 
+    if (!menuBtn || !navMenu) return;
 
-    activeMenu.addEventListener('click', () => {
-        activeMenu.classList.toggle('fa-x');
+    menuBtn.addEventListener('click', () => {
+        menuBtn.classList.toggle('fa-x');
         navMenu.classList.toggle('ativado');
     });
-
 }
-menuMobile();
 
-function aboutMe() {
-    const divExperience = document.querySelectorAll('.experience_content div');
-    const liExperience = document.querySelectorAll('.experience_content ul li');
-    const divEducation = document.querySelectorAll('.education_content div');
-    const liEducation = document.querySelectorAll('.education_content ul li');
+// Experience & Education Tab Logic
+function initTabs() {
+    const experienceDivs = document.querySelectorAll('.experience_content div');
+    const experienceDots = document.querySelectorAll('.experience_content ul li');
+    const educationDivs = document.querySelectorAll('.education_content div');
+    const educationDots = document.querySelectorAll('.education_content ul li');
 
-    divEducation[0].classList.add('active');
-    liEducation[0].classList.add('active');
-    divExperience[0].classList.add('active');
-    liExperience[0].classList.add('active');
+    const setupTabs = (divs, dots) => {
+        if (divs.length === 0 || dots.length === 0) return;
+        
+        // Set initial state
+        divs[0].classList.add('active');
+        dots[0].classList.add('active');
 
-    function slideShow(index) {
-        divExperience.forEach((div) => {
-            div.classList.remove('active')
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                divs.forEach(div => div.classList.remove('active'));
+                dots.forEach(d => d.classList.remove('active'));
+                divs[index].classList.add('active');
+                dot.classList.add('active');
+            });
         });
-        liExperience.forEach((buttom) => {
-            buttom.classList.remove('active');
-        })
-        divExperience[index].classList.add('active');
-        liExperience[index].classList.add('active');
-    }
+    };
 
-    function slideShow2(index) {
-        divEducation.forEach((div) => {
-            div.classList.remove('active')
+    setupTabs(experienceDivs, experienceDots);
+    setupTabs(educationDivs, educationDots);
+}
+
+// Project Filtering
+function initProjectFilter() {
+    const filterButtons = document.querySelectorAll('.projects_models ul li');
+    const projectItems = document.querySelectorAll('.projects_storage ul li');
+
+    if (filterButtons.length === 0 || projectItems.length === 0) return;
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Update button active state
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            const category = button.classList.contains('all') ? 'all' : 
+                           button.classList.contains('design') ? 'design' : 'webSite';
+
+            // Filter items
+            projectItems.forEach(item => {
+                if (category === 'all' || item.id === category) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
         });
-        liEducation.forEach((buttom) => {
-            buttom.classList.remove('active');
-        })
-        divEducation[index].classList.add('active');
-        liEducation[index].classList.add('active');
-    }
-
-    liExperience.forEach((event, index) => {
-        event.addEventListener('click', () => {
-            slideShow(index);
-        })
     });
 
-    liEducation.forEach((event, index) => {
-        event.addEventListener('click', () => {
-            slideShow2(index);
-        })
-    });
+    // Show all projects initially
+    projectItems.forEach(item => item.classList.add('active'));
 }
 
-aboutMe();
+// Initialize all features on DOM Load
+document.addEventListener('DOMContentLoaded', () => {
+    initTypingEffect();
+    initModal();
+    initReadMore();
+    initMobileMenu();
+    initTabs();
+    initProjectFilter();
 
-const listAll = document.querySelectorAll('.projects_storage ul li');
-const buttomGeral = document.querySelectorAll('.projects_models ul li');
-const buttomAll = document.querySelectorAll('.projects_models .all');
-
-
-function removeClick(index) {
-    buttomGeral.forEach((item) => {
-        item.classList.remove('.active');
-    });
-    buttomGeral[index].classList.add('.active')
-}
-
-buttomGeral.forEach((item, index) => {
-    item.addEventListener('click', () => {
-        removeClick(index);
-    })
-
-})
-
-function showList(list, buttom = "all") {
-    list.forEach((item) => {
-        item.classList.remove('active')
-    });
-    if (buttom == 'design') {
-        list[0].classList.add('active');
-        list[1].classList.add('active');
-        list[2].classList.add('active');
-        list[3].classList.add('active');
+    // Auto-play hero video
+    const video = document.getElementById('myVideo');
+    if (video) {
+        video.play().catch(error => console.log("Video auto-play failed:", error));
     }
-    
-    if (buttom == 'webSite') {
-        list[4].classList.add('active');
-        list[5].classList.add('active');
-        list[6].classList.add('active');
-        list[7].classList.add('active');
-    }
-    if (buttom == 'all') {
-        list[0].classList.add('active');
-        list[1].classList.add('active');
-        list[2].classList.add('active');
-        list[3].classList.add('active');
-        list[4].classList.add('active');
-        list[5].classList.add('active');
-        list[6].classList.add('active');
-        list[7].classList.add('active');
-    }
-}
-
-buttomGeral.forEach((item) => {
-    item.addEventListener('click', (e) => {
-        let currentButtom = e.target
-        if (currentButtom.classList.contains('all')) {
-            showList(listAll)
-        }
-        if (currentButtom.classList.contains('design')) {
-            showList(listAll, "design")
-        }
-        if (currentButtom.classList.contains('graphic')) {
-            showList(listAll, "graphic")
-        }
-        if (currentButtom.classList.contains('webSite')) {
-            showList(listAll, "webSite")
-        }
-        if (currentButtom.classList.contains('all')) {
-            showList(listAll, "all")
-        }
-    })
-})
-
-
-
-
+});
