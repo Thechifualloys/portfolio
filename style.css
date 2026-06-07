@@ -70,11 +70,14 @@ header .navegacao-primaria li a:hover::after {
     gap: 15px;
 }
 
-.main-logo {
-    height: 60px;
-    width: auto;
-    border-radius: 4px;
-    object-fit: contain;
+.brand-icon {
+    font-size: 2rem;
+    color: #01eeff;
+    transition: 0.3s;
+}
+
+.logo-container:hover .brand-icon {
+    transform: rotate(-15deg) scale(1.1);
 }
 
 .footer-logo {
