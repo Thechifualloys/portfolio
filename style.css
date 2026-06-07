@@ -457,11 +457,10 @@ main .sobre {
 }
 
 .my_service ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    justify-items: center;
 }
 
 .my_service ul li {
@@ -937,6 +936,10 @@ main .sobre {
         
     }
 
+    .my_service ul {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .my_service p{
         display: none;
         
@@ -1054,6 +1057,10 @@ footer {
 @media screen and (max-width: 600px) {
     .footer-content {
         flex-direction: column;
+    }
+
+    .my_service ul {
+        grid-template-columns: 1fr;
     }
 
     .left,
