@@ -71,9 +71,22 @@ header .navegacao-primaria li a:hover::after {
 }
 
 .main-logo {
-    width: 50px;
-    height: auto;
-    border-radius: 8px;
+    height: 60px;
+    width: auto;
+    border-radius: 4px;
+    object-fit: contain;
+}
+
+.footer-logo {
+    height: 50px;
+    width: auto;
+    margin-right: 15px;
+}
+
+.footer-logo img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
 }
 
 .modal {
