@@ -14,16 +14,34 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     background-color: #000;
+    position: relative;
+}
+
+#body-bg-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    opacity: 0.4; /* Adjust opacity to make content readable */
 }
 
 /* Header */
 
 header {
-    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 10px;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 header h1 {
@@ -348,12 +366,35 @@ main .sobre {
     filter: blur(1px);
 }
 
+#myprofileVideo {
+    grid-column: 1;
+    grid-row: 2;
+    animation: sideSection .5s ease-in-out forwards;
+    cursor: pointer;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 15px;
+    filter: blur(0);
+    transform: rotate(90deg) !important;
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    justify-self: center;
+    align-self: center;
+    display: block;
+    margin: 50px 0;
+}
+
+#myprofileVideo:hover {
+    transform: rotate(90deg) scale(1.02) !important;
+}
+
 .sobre_conteudo {
     animation: upSection .6s ease-in-out forwards;
-    grid-column: 2/-1;
+    grid-column: 2 / 4;
     color: #707070;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
 }
 
 .sobre_texto {

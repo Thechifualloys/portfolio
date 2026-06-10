@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/2658e689e5.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css?v=1.0.1">
+    <link rel="stylesheet" href="style.css?v=1.0.6">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -17,6 +17,9 @@
 </head>
 
 <body>
+    <video id="body-bg-video" autoplay muted loop playsinline>
+        <source src="assets/body_bg.mp4" type="video/mp4">
+    </video>
 
     <header id="section-0">
         <a href="https://github.com/Thechifualloys" target="_blank" class="logo-container">
@@ -65,7 +68,7 @@
            <a href="#section-1" class="btn-primary">View Our Work</a>
         </div>
         <video id="myVideo" autoplay muted loop playsinline>
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-programming-code-on-a-monitor-screen-1164-large.mp4?v=1.0.1" type="video/mp4">
+            <source src="assets/coding_bg.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
 
@@ -79,13 +82,8 @@
                 </div>
             </div>
 
-            <video id="myprofileVideo" autoplay muted loop style=" animation: sideSection .5s ease-in-out forwards;
-            cursor: pointer;
-            grid-row: 2;
-            max-width: 100%;
-            border-radius: 10px;
-            filter: blur(0);">
-                <source src="img/projects/My project-1 (3).mp4" type="video/mp4">
+            <video id="myprofileVideo" autoplay muted loop playsinline>
+                <source src="assets/coding_bg2.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
 
@@ -306,42 +304,6 @@
         </div>
     </div>
 
-    <section class="projects">
-        <div class="sobre_titulo">
-            <h1>Our Portfolio</h1>
-            <p>A Glimpse into Chiflloy's Digital Gallery</p>
-        </div>
-        <div class="projects_models">
-            <ul aria-label="Project Categories">
-                <li class="all active">All Works</li>
-                <li class="design">Architecture</li>
-                <li class="webSite">Applications</li>
-            </ul>
-        </div>
-        <div class="projects_storage">
-            <ul aria-label="Navegação de Projects">
-                <li id="design" class="active"><a href="#" target="_blank"><img src="img/Projects/img_1.png"
-                    alt="Project 1"></a></li>
-                <li id="design" class="active"><a href="#" target="_blank"><img src="img/projects/Untitled5.png"
-                    alt="Project 2"></a></li>
-                <li id="design" class="active"><a href="#" target="_blank"><img src="img/projects/s7.png"
-                            alt="Project 3"></a></li>
-                <li id="design" class="active"><a href="#" target="_blank"><img src="img/projects/s10.png" 
-                            alt="Project 4"></a></li>
-                
-                <li id="webSite" class="active"><a href="#" target="_blank"><img src="img/projects/Untitled.png"
-                            alt="Project 5"></a></li>
-                <li id="webSite" class="active"><a href="#" target="_blank"><img src="img/projects/Untitled1.png"
-                            alt="Project 6"></a></li>
-                <li id="webSite" class="active"><a href="#" target="_blank"><img src="img/projects/Untitled3.png"
-                            alt="Project 7"></a></li>
-                <li id="webSite" class="active"><a href="#" target="_blank"><img src="img/projects/Untitled4.png"
-                            alt="Project 8"></a></li>
-            </ul>
-        </div>
-        <a href="#" id="link">Explore Full Gallery</a>
-    </section>
-
     <footer>
         <div class="footer-content">
             <div class="left">
@@ -362,7 +324,7 @@
     </footer>
 
 
-    <script src="script.js?v=1.0.1"></script>
+    <script src="script.js?v=1.0.2"></script>
 </body>
 
 </html>
