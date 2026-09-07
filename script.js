@@ -1,49 +1,169 @@
 /**
  * Chiflloy Portfolio Script
- * Modernized & Optimized
  */
 
-// Typing Effect for Hero Section
-function initTypingEffect() {
-    const title = document.querySelector('.typing');
-    if (!title) return;
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const text = title.innerHTML;
-    title.innerHTML = '';
-    
-    const arrText = text.split('');
-    arrText.forEach((letra, i) => {
-        setTimeout(() => {
-            title.innerHTML += letra;
-        }, 100 * i);
+// Ambient cyber network background
+function initBackgroundNetwork() {
+    const canvas = document.getElementById('bgNetwork');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    let width, height, nodes;
+    const LINK_DIST = 150;
+    const NODE_COLOR = 'rgba(1, 238, 255, 0.55)';
+
+    const resize = () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        const density = Math.min(70, Math.floor((width * height) / 22000));
+        nodes = Array.from({ length: density }, () => ({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.25,
+            vy: (Math.random() - 0.5) * 0.25
+        }));
+    };
+
+    const drawStatic = () => {
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = NODE_COLOR;
+        nodes.forEach(n => {
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, 1.6, 0, Math.PI * 2);
+            ctx.fill();
+        });
+    };
+
+    const step = () => {
+        ctx.clearRect(0, 0, width, height);
+
+        nodes.forEach(n => {
+            n.x += n.vx;
+            n.y += n.vy;
+            if (n.x < 0 || n.x > width) n.vx *= -1;
+            if (n.y < 0 || n.y > height) n.vy *= -1;
+        });
+
+        for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+                const dx = nodes[i].x - nodes[j].x;
+                const dy = nodes[i].y - nodes[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < LINK_DIST) {
+                    ctx.strokeStyle = `rgba(1, 238, 255, ${0.16 * (1 - dist / LINK_DIST)})`;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(nodes[i].x, nodes[i].y);
+                    ctx.lineTo(nodes[j].x, nodes[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+
+        ctx.fillStyle = NODE_COLOR;
+        nodes.forEach(n => {
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, 1.6, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        requestAnimationFrame(step);
+    };
+
+    resize();
+
+    if (prefersReducedMotion) {
+        drawStatic();
+        window.addEventListener('resize', () => { resize(); drawStatic(); });
+        return;
+    }
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(resize, 200);
     });
+
+    requestAnimationFrame(step);
 }
 
-// Modal Management
-function initModal() {
-    const modal = document.getElementById("modal");
-    const contactBtn = document.getElementById("contactBtn");
-    const closeBtn = document.querySelector(".close");
+// Mobile menu
+function initMobileMenu() {
+    const nav = document.getElementById('site-nav');
+    const toggle = document.getElementById('menuToggle');
+    const links = document.querySelectorAll('.primary-nav a, .nav-cta');
 
-    if (!modal || !contactBtn) return;
+    if (!nav || !toggle) return;
 
-    contactBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        modal.classList.add("active");
+    const closeMenu = () => {
+        nav.classList.remove('mobile-open');
+        toggle.setAttribute('aria-expanded', 'false');
+    };
+
+    toggle.addEventListener('click', () => {
+        const isOpen = nav.classList.toggle('mobile-open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
     });
 
-    closeBtn.addEventListener("click", () => {
-        modal.classList.remove("active");
+    links.forEach(link => link.addEventListener('click', closeMenu));
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
     });
 
-    window.addEventListener("click", (e) => {
-        if (e.target === modal) {
-            modal.classList.remove("active");
+    document.addEventListener('click', (e) => {
+        if (nav.classList.contains('mobile-open') && !nav.contains(e.target)) {
+            closeMenu();
         }
     });
 }
 
-// "Read More" Toggle Logic
+// Scrollspy: highlight active nav link based on visible section
+function initScrollSpy() {
+    const sections = document.querySelectorAll('main section[id]');
+    const navLinks = document.querySelectorAll('.primary-nav a');
+    if (!sections.length || !navLinks.length) return;
+
+    const linkFor = (id) => document.querySelector(`.primary-nav a[href="#${id}"]`);
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(l => l.classList.remove('active'));
+                const activeLink = linkFor(entry.target.id);
+                if (activeLink) activeLink.classList.add('active');
+            }
+        });
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+    sections.forEach(section => observer.observe(section));
+}
+
+// Reveal-on-scroll animations
+function initRevealOnScroll() {
+    const items = document.querySelectorAll('[data-reveal]');
+    if (!items.length) return;
+
+    if (prefersReducedMotion) {
+        items.forEach(el => el.classList.add('in-view'));
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+
+    items.forEach(el => observer.observe(el));
+}
+
+// "Read More" toggle
 function initReadMore() {
     const readMoreLink = document.getElementById('read-more-link');
     const collapseLink = document.getElementById('collapse-link');
@@ -66,90 +186,89 @@ function initReadMore() {
     });
 }
 
-// Mobile Menu
-function initMobileMenu() {
-    const menuBtn = document.querySelector('.fa-bars');
-    const navMenu = document.querySelector('header .navegacao-primaria');
+// Hero terminal: simulated command sequence
+function initTerminal() {
+    const body = document.getElementById('terminalBody');
+    if (!body) return;
 
-    if (!menuBtn || !navMenu) return;
+    const sequence = [
+        { cmd: 'whoami', out: 'alloys-chifu — backend & systems engineer' },
+        { cmd: 'cat stack.txt', out: 'node.js · python · postgresql · mongodb' },
+        { cmd: 'git log -1 --oneline', out: 'building reliable systems, one commit at a time.' }
+    ];
 
-    menuBtn.addEventListener('click', () => {
-        menuBtn.classList.toggle('fa-x');
-        navMenu.classList.toggle('ativado');
-    });
-}
-
-// Experience & Education Tab Logic
-function initTabs() {
-    const experienceDivs = document.querySelectorAll('.experience_content div');
-    const experienceDots = document.querySelectorAll('.experience_content ul li');
-    const educationDivs = document.querySelectorAll('.education_content div');
-    const educationDots = document.querySelectorAll('.education_content ul li');
-
-    const setupTabs = (divs, dots) => {
-        if (divs.length === 0 || dots.length === 0) return;
-        
-        // Set initial state
-        divs[0].classList.add('active');
-        dots[0].classList.add('active');
-
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                divs.forEach(div => div.classList.remove('active'));
-                dots.forEach(d => d.classList.remove('active'));
-                divs[index].classList.add('active');
-                dot.classList.add('active');
-            });
+    const render = () => {
+        body.innerHTML = '';
+        sequence.forEach(step => {
+            const line = document.createElement('p');
+            line.className = 'terminal-line';
+            line.innerHTML = `<span class="prompt">$</span><span class="cmd">${step.cmd}</span>`;
+            const out = document.createElement('p');
+            out.className = 'terminal-out';
+            out.textContent = step.out;
+            body.appendChild(line);
+            body.appendChild(out);
         });
+        const promptLine = document.createElement('p');
+        promptLine.className = 'terminal-line';
+        promptLine.innerHTML = `<span class="prompt">$</span><span class="cursor"></span>`;
+        body.appendChild(promptLine);
     };
 
-    setupTabs(experienceDivs, experienceDots);
-    setupTabs(educationDivs, educationDots);
-}
-
-// Project Filtering
-function initProjectFilter() {
-    const filterButtons = document.querySelectorAll('.projects_models ul li');
-    const projectItems = document.querySelectorAll('.projects_storage ul li');
-
-    if (filterButtons.length === 0 || projectItems.length === 0) return;
-
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Update button active state
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-
-            const category = button.classList.contains('all') ? 'all' : 
-                           button.classList.contains('design') ? 'design' : 'webSite';
-
-            // Filter items
-            projectItems.forEach(item => {
-                if (category === 'all' || item.id === category) {
-                    item.classList.add('active');
-                } else {
-                    item.classList.remove('active');
-                }
-            });
-        });
-    });
-
-    // Show all projects initially
-    projectItems.forEach(item => item.classList.add('active'));
-}
-
-// Initialize all features on DOM Load
-document.addEventListener('DOMContentLoaded', () => {
-    initTypingEffect();
-    initModal();
-    initReadMore();
-    initMobileMenu();
-    initTabs();
-    initProjectFilter();
-
-    // Auto-play hero video
-    const video = document.getElementById('myVideo');
-    if (video) {
-        video.play().catch(error => console.log("Video auto-play failed:", error));
+    if (prefersReducedMotion) {
+        render();
+        return;
     }
+
+    let i = 0;
+    const typeNext = () => {
+        if (i >= sequence.length) {
+            const promptLine = document.createElement('p');
+            promptLine.className = 'terminal-line';
+            promptLine.innerHTML = `<span class="prompt">$</span><span class="cursor"></span>`;
+            body.appendChild(promptLine);
+            return;
+        }
+        const step = sequence[i];
+        const line = document.createElement('p');
+        line.className = 'terminal-line';
+        line.innerHTML = `<span class="prompt">$</span><span class="cmd"></span>`;
+        body.appendChild(line);
+        const cmdEl = line.querySelector('.cmd');
+
+        let c = 0;
+        const typeChar = setInterval(() => {
+            cmdEl.textContent += step.cmd[c];
+            c++;
+            if (c >= step.cmd.length) {
+                clearInterval(typeChar);
+                setTimeout(() => {
+                    const out = document.createElement('p');
+                    out.className = 'terminal-out';
+                    out.textContent = step.out;
+                    body.appendChild(out);
+                    i++;
+                    setTimeout(typeNext, 450);
+                }, 250);
+            }
+        }, 35);
+    };
+
+    typeNext();
+}
+
+// Footer year
+function initFooterYear() {
+    const el = document.getElementById('year');
+    if (el) el.textContent = new Date().getFullYear();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initBackgroundNetwork();
+    initMobileMenu();
+    initScrollSpy();
+    initRevealOnScroll();
+    initReadMore();
+    initTerminal();
+    initFooterYear();
 });

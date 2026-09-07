@@ -1,330 +1,501 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/2658e689e5.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css?v=1.0.6">
+    <meta name="description" content="Alloys Chifu (Chiflloy) — backend-focused software engineer building APIs, scalable applications and database-driven systems with Node.js, Python, PostgreSQL and MongoDB. Based in Nairobi, Kenya.">
+    <meta name="theme-color" content="#05070a">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Alloys Chifu — Backend Software Engineer">
+    <meta property="og:description" content="Backend-focused software engineer building APIs, scalable applications and database-driven systems.">
+    <meta property="og:image" content="assets/chiflloylogo2.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="style.css?v=2.0.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Chiflloy | Software Development Excellence</title>
+    <title>Alloys Chifu (Chiflloy) — Backend Software Engineer</title>
     <link rel="icon" type="image/x-icon" href="assets/chiflloylogo.png">
-
-
 </head>
 
 <body>
-    <video id="body-bg-video" autoplay muted loop playsinline>
-        <source src="assets/body_bg.mp4" type="video/mp4">
-    </video>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <header id="section-0">
-        <a href="https://github.com/Thechifualloys" target="_blank" class="logo-container">
-            <i class="fa-solid fa-code brand-icon"></i>
-            <h1>Chif<span>lloy</span></h1>
-        </a>
+    <canvas id="bgNetwork" class="bg-layer" aria-hidden="true"></canvas>
+    <div class="bg-layer bg-grid" aria-hidden="true"></div>
+    <div class="bg-layer bg-glow" aria-hidden="true"></div>
+    <div class="bg-layer bg-scanline" aria-hidden="true"></div>
+    <div class="bg-layer bg-noise" aria-hidden="true"></div>
 
-        <nav>
-            <ul aria-label="Navegação primaria" class="navegacao-primaria">
-                <li><a href="#section-1">Portfolio</a></li>
-                <li><a href="#section-2">Resume</a></li>
-                <li><a href="#section-3">Services</a></li>
-                <li><a href="#contato" id="contactBtn">Contacts</a></li>
-            </ul>
-            <i class="fa-solid fa-bars"></i>
-        </nav>
+    <header>
+        <div class="wrap">
+            <a href="#home" class="logo-container">
+                <span class="prompt-glyph">&gt;_</span>
+                <h1>Chif<span>lloy</span></h1>
+            </a>
 
-        <div id="modal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Let's Build Something Great Together</h2>
-                <p class="modal-subtitle">Reach out to Chiflloy for your next project</p>
-                <ul class="contact-list">
-                    <li>
-                        <a href="mailto:aloiceapamo@gmail.com"><i class="fa-solid fa-envelope"></i>
-                            aloiceapamo@gmail.com</a>
-                    </li>
-                    <li>
-                        <a href="https://wa.me/254790788994"><i class="fab fa-whatsapp"></i> +254 790 788 994</a>
-                    </li>
-                    <li>
-                        <a href="https://www.linkedin.com/in/alloys-chifu"><i class="fab fa-linkedin"></i>
-                            Alloys Chifu</a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/Thechifualloys"><i class="fab fa-github"></i> GitHub Profile</a>
-                    </li>
+            <nav id="site-nav">
+                <ul aria-label="Primary navigation" class="primary-nav" id="primary-nav">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#services">Services</a></li>
                 </ul>
-            </div>
+                <a href="#contact" class="nav-cta">$ contact</a>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </nav>
         </div>
     </header>
-    <section aria-label="Hero Section" class="section-div">
-        <div>
-            <h2 class="typing">Chiflloy: Software Architects</h2>
-            <p>Transforming complex problems into elegant digital solutions. From stunning websites and powerful webapps to robust desktop applications, we bring your vision to life with precision and passion.</p>
-           <a href="#section-1" class="btn-primary">View Our Work</a>
-        </div>
-        <video id="myVideo" autoplay muted loop playsinline>
-            <source src="assets/coding_bg.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
 
-    </section>
-    <main>
-        <article aria-label="About Chiflloy" class="sobre" id="section-1">
-            <div class="sobre_titulo">
-                <h1>About Chiflloy</h1>
-                <p>Innovating Digital Landscapes</p>
-                <div aria-label="Seção de botões">
+    <main id="main">
+        <!-- ================= HERO ================= -->
+        <section class="hero wrap" id="home" aria-label="Introduction">
+            <div class="hero-copy">
+                <span class="eyebrow">Software Engineer &middot; Backend &amp; Systems</span>
+                <h2>Building backend systems, APIs, and software that businesses <span class="accent-text">actually run on</span>.</h2>
+                <p class="lede">
+                    I'm Alloys Chifu, a software engineer specializing in backend architecture, APIs and
+                    database-driven applications — using Node.js, Python, PostgreSQL and MongoDB, paired
+                    with React or Vue on the front end. Based in Nairobi, Kenya, building since 2022.
+                </p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn-primary">View Projects</a>
+                    <a href="#contact" class="btn-secondary">Get in Touch</a>
+                </div>
+                <div class="hero-meta">
+                    <div><i class="fa-solid fa-location-dot"></i> Nairobi, Kenya</div>
+                    <div><i class="fa-solid fa-code-branch"></i> Building since 2022</div>
+                    <div><i class="fa-brands fa-github"></i> github.com/Thechifualloys</div>
                 </div>
             </div>
 
-            <video id="myprofileVideo" autoplay muted loop playsinline>
-                <source src="assets/coding_bg2.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <div class="terminal-window" aria-hidden="true">
+                <div class="terminal-header">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                    <span class="terminal-title">~/chiflloy — zsh</span>
+                </div>
+                <div class="terminal-body" id="terminalBody"></div>
+            </div>
+        </section>
 
-            <div class="sobre_conteudo">
-                <div class="sobre_texto">
-                    <h1>Crafting Future-Ready Software</h1>
-                    <p> At Chiflloy, we don't just write code; we architect experiences. Founded in 2022, our journey has been driven by a relentless pursuit of technical excellence and user-centric design. We specialize in bridging the gap between imagination and functional reality.
-                        <br>
-                        <br>
-                        Our expertise spans the entire development lifecycle. On the <strong>Front-end</strong>, we craft immersive interfaces using HTML5, CSS3, JavaScript (React, Vue), ensuring every pixel serves a purpose. 
-                        <br>
-                        <br>
-                        The <strong>Back-end</strong> is where our logic thrives. Using Node.js, Python, and robust database architectures (PostgreSQL, MongoDB), we build scalable engines that power modern digital enterprises. Whether it's a sleek website, a complex webapp, or a high-performance desktop application, we deliver results that exceed expectations.
-                        <br>
-                        <br>
-                    </p>
-                    <div id="hidden-paragraphs" class="hidden">
-                        <p>We pride ourselves on our versatility. From e-commerce solutions that drive sales to custom enterprise tools that optimize workflows, Chiflloy is your partner in digital transformation.
+        <!-- ================= ABOUT ================= -->
+        <section class="section" id="about" aria-labelledby="about-heading">
+            <div class="wrap">
+                <div class="section-head" data-reveal>
+                    <span class="eyebrow">01 &middot; About</span>
+                    <h2 id="about-heading">Engineer profile</h2>
+                    <p>Backend-first, full-stack when the problem needs it.</p>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-text" data-reveal>
+                        <p>
+                            I don't just write code — I architect systems. Since founding Chiflloy in 2022,
+                            I've focused on bridging the gap between real operational problems and reliable
+                            software that solves them.
                         </p>
-                        <br>
-                        <p>Join us on a journey where technology meets creativity. Let's build the next generation of software together.
+                        <p>
+                            On the <strong>backend</strong>, logic is where the work actually happens: using
+                            Node.js, Python and robust database design with PostgreSQL and MongoDB, I build
+                            engines that stay stable under real usage. On the <strong>front end</strong>, I use
+                            HTML5, CSS3 and JavaScript (React, Vue) to make sure that logic is actually usable.
                         </p>
-                        <br>
+                        <div id="hidden-paragraphs" class="hidden">
+                            <p>
+                                I've worked across the stack — from custom API integrations and automated
+                                inventory systems for e-commerce platforms, to server environments and
+                                enterprise-level deployments where uptime and security aren't optional.
+                            </p>
+                            <p>
+                                Whether it's a hostel management system handling high traffic, a Shopify store
+                                that needs its inventory automated, or a backend that just needs to not fall
+                                over — that's the kind of problem I like solving.
+                            </p>
+                        </div>
+                        <a id="read-more-link" href="#" class="read-more-link">Read more <i class="fa-solid fa-arrow-down"></i></a>
+                        <a id="collapse-link" href="#" class="read-more-link hidden">Show less <i class="fa-solid fa-arrow-up"></i></a>
+
+                        <div class="about-info">
+                            <div class="chip"><i class="fa-solid fa-rocket"></i> Est. 2022</div>
+                            <div class="chip"><i class="fa-solid fa-location-dot"></i> Nairobi, Kenya</div>
+                            <div class="chip"><i class="fa-brands fa-whatsapp"></i> <a href="https://wa.me/254790788994">+254 790 788 994</a></div>
+                            <div class="chip"><i class="fa-solid fa-envelope"></i> <a href="mailto:aloiceapamo@gmail.com">aloiceapamo@gmail.com</a></div>
+                        </div>
                     </div>
 
-
-                </div>
-
-                <a id="read-more-link" href="#" style="color: #08c4d1;">Discover More</a>
-                <a id="collapse-link" href="#" class="hidden" style="color: #08c4d1;">Show Less</a>
-
-                <div class="sobre_info">
-                    <p><i class="fa-solid fa-rocket"></i>Est. 2022</p>
-                    <p><i class="fa-solid fa-location-dot"></i>Nairobi, Kenya</p>
-                    <p><i class="fa-brands fa-whatsapp"></i>+254 790 788 994</p>
-                    <p><i class="fa-solid fa-envelope"></i>aloiceapamo@gmail.com</p>
+                    <div class="about-cards" data-reveal>
+                        <div class="about-card">
+                            <i class="fa-solid fa-server"></i>
+                            <h3>Engineering</h3>
+                            <p>Backend systems, REST APIs and third-party integrations.</p>
+                        </div>
+                        <div class="about-card">
+                            <i class="fa-solid fa-diagram-project"></i>
+                            <h3>Architecture</h3>
+                            <p>Scalable application and database design, built to hold up under load.</p>
+                        </div>
+                        <div class="about-card">
+                            <i class="fa-solid fa-gears"></i>
+                            <h3>Automation</h3>
+                            <p>Replacing repetitive manual workflows with dependable software.</p>
+                        </div>
+                        <div class="about-card">
+                            <i class="fa-solid fa-building-shield"></i>
+                            <h3>Business Systems</h3>
+                            <p>ERP systems for fueling stations, logistics and accounting — built around real operational requirements.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </article>
+        </section>
+
+        <!-- ================= PROJECTS ================= -->
+        <section class="section" id="projects" aria-labelledby="projects-heading">
+            <div class="wrap">
+                <div class="section-head" data-reveal>
+                    <span class="eyebrow">02 &middot; Selected Work</span>
+                    <h2 id="projects-heading">Projects</h2>
+                    <p>Real systems built to solve real operational problems.</p>
+                </div>
+
+                <div class="project-featured" data-reveal>
+                    <div>
+                        <span class="project-tag">Featured &middot; System Architecture</span>
+                        <h3>Regikom</h3>
+                        <div class="case-field">
+                            <span class="label">Problem</span>
+                            <p>A hostel needed a reliable inquiry and management system that could hold up under high-traffic, day-to-day use.</p>
+                        </div>
+                        <div class="case-field">
+                            <span class="label">Built</span>
+                            <p>A hostel management inquiry system engineered around backend efficiency and database normalization, so performance stays consistent as usage grows.</p>
+                        </div>
+                        <div class="case-field">
+                            <span class="label">Focus</span>
+                            <p>Query performance, data integrity and a schema designed to scale.</p>
+                        </div>
+                        <div class="stack-tags">
+                            <span>Backend</span>
+                            <span>Database Design</span>
+                            <span>Query Optimization</span>
+                            <span>High-Traffic Systems</span>
+                        </div>
+                    </div>
+
+                    <div class="arch-diagram" aria-hidden="true">
+                        <div class="arch-node">CLIENT</div>
+                        <div class="arch-connector"></div>
+                        <div class="arch-node accent-node">API</div>
+                        <div class="arch-connector"></div>
+                        <div class="arch-node accent-node">BACKEND</div>
+                        <div class="arch-connector"></div>
+                        <div class="arch-node">DATABASE</div>
+                    </div>
+                </div>
+
+                <div class="projects-secondary">
+                    <div class="project-card" data-reveal>
+                        <span class="project-tag">ERP &middot; Fuel &amp; Retail</span>
+                        <h3>Fueling Station ERP</h3>
+                        <p>
+                            An ERP system built for fueling station operations, including OLA Fueling Station —
+                            covering fuel stock, sales and reporting in one system.
+                        </p>
+                        <div class="stack-tags">
+                            <span>ERP</span>
+                            <span>Inventory</span>
+                            <span>Reporting</span>
+                        </div>
+                    </div>
+                    <div class="project-card" data-reveal>
+                        <span class="project-tag">ERP &middot; Logistics</span>
+                        <h3>Logistics ERP</h3>
+                        <p>
+                            An ERP system for logistics operations, built to manage fleet, shipments and
+                            day-to-day operational workflows from one backend.
+                        </p>
+                        <div class="stack-tags">
+                            <span>ERP</span>
+                            <span>Logistics</span>
+                            <span>Operations</span>
+                        </div>
+                    </div>
+                    <div class="project-card" data-reveal>
+                        <span class="project-tag">ERP &middot; Finance</span>
+                        <h3>Accounting ERP</h3>
+                        <p>
+                            An ERP system for accounting operations — handling financial records, invoicing
+                            and reporting within a single, consistent system.
+                        </p>
+                        <div class="stack-tags">
+                            <span>ERP</span>
+                            <span>Finance</span>
+                            <span>Invoicing</span>
+                        </div>
+                    </div>
+                    <div class="project-card" data-reveal>
+                        <span class="project-tag">Integrations</span>
+                        <h3>E-Commerce Platform Integrations</h3>
+                        <p>
+                            Custom API integrations and automated inventory management for Shopify stores —
+                            removing manual stock-tracking and improving conversion rates through data-driven
+                            UX changes.
+                        </p>
+                        <div class="stack-tags">
+                            <span>Shopify APIs</span>
+                            <span>Automation</span>
+                            <span>E-Commerce</span>
+                        </div>
+                    </div>
+                    <div class="project-card" data-reveal>
+                        <span class="project-tag">Infrastructure</span>
+                        <h3>Enterprise Server Infrastructure</h3>
+                        <p>
+                            Configured and maintained mission-critical server environments, guiding
+                            enterprise-level deployments and tuning systems for uptime and security.
+                        </p>
+                        <div class="stack-tags">
+                            <span>Server Administration</span>
+                            <span>Deployment</span>
+                            <span>Reliability</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="projects-more" data-reveal>
+                    <a class="link-arrow" href="https://github.com/Thechifualloys" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-github"></i> See more on GitHub &rarr;
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= EXPERIENCE ================= -->
+        <section class="section" id="experience" aria-labelledby="experience-heading">
+            <div class="wrap">
+                <div class="section-head" data-reveal>
+                    <span class="eyebrow">03 &middot; History</span>
+                    <h2 id="experience-heading">Experience</h2>
+                    <p>Professional journey and technical background.</p>
+                </div>
+
+                <div class="timeline-wrap">
+                    <div data-reveal>
+                        <h3 class="timeline-heading"><i class="fa-solid fa-handshake"></i> Experience</h3>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <span class="date">2022 — Present</span>
+                                <h4>Chiflloy — Software Development</h4>
+                                <p>Leading the design and development of full-stack applications. Architected scalable web ecosystems for diverse clients and managed project lifecycles from conception to deployment.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="date">2022 — Present</span>
+                                <h4>E-Commerce Specialist</h4>
+                                <p>Managed and optimized Shopify platforms, integrating custom APIs and automated inventory management systems. Improved conversion rates through data-driven UX changes.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="date">May 2022 — Sept 2022</span>
+                                <h4>IT Infrastructure Support</h4>
+                                <p>Configured and maintained mission-critical server environments. Provided technical guidance for enterprise-level deployments and optimized systems for uptime and security.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="date">Jan 2022 — Nov 2022</span>
+                                <h4>System Architecture Project</h4>
+                                <p>Developed "Regikom," a hostel management inquiry system, focused on backend efficiency and database normalization for high-traffic use.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-reveal>
+                        <h3 class="timeline-heading"><i class="fa-solid fa-book"></i> Background</h3>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <span class="date">2017 — 2022</span>
+                                <h4>B.Sc. Computer Science</h4>
+                                <p>Kenyatta University</p>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="date">2016 — 2017</span>
+                                <h4>Advanced Computing</h4>
+                                <p>Likomatt Training Center</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="impact-strip" data-reveal>
+                    <div class="impact-tile">
+                        <span class="num">50+</span>
+                        <p>Projects Delivered</p>
+                    </div>
+                    <div class="impact-tile">
+                        <span class="num">2022</span>
+                        <p>Inception Year</p>
+                    </div>
+                    <div class="impact-tile">
+                        <span class="num">100%</span>
+                        <p>Client Satisfaction</p>
+                    </div>
+                    <div class="impact-tile">
+                        <span class="num">12+</span>
+                        <p>Global Partners</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SKILLS ================= -->
+        <section class="section" id="skills" aria-labelledby="skills-heading">
+            <div class="wrap">
+                <div class="section-head" data-reveal>
+                    <span class="eyebrow">04 &middot; Stack</span>
+                    <h2 id="skills-heading">Skills</h2>
+                    <p>The technical ecosystem I build with.</p>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skill-group" data-reveal>
+                        <h3>Backend</h3>
+                        <div class="chip-row">
+                            <span class="tech-chip">Node.js</span>
+                            <span class="tech-chip">Python</span>
+                            <span class="tech-chip">REST APIs</span>
+                        </div>
+                    </div>
+                    <div class="skill-group" data-reveal>
+                        <h3>Frontend</h3>
+                        <div class="chip-row">
+                            <span class="tech-chip">React</span>
+                            <span class="tech-chip">Vue</span>
+                            <span class="tech-chip">HTML5</span>
+                            <span class="tech-chip">CSS3</span>
+                            <span class="tech-chip">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="skill-group" data-reveal>
+                        <h3>Databases</h3>
+                        <div class="chip-row">
+                            <span class="tech-chip">PostgreSQL</span>
+                            <span class="tech-chip">MongoDB</span>
+                            <span class="tech-chip">SQL / NoSQL</span>
+                        </div>
+                    </div>
+                    <div class="skill-group" data-reveal>
+                        <h3>APIs &amp; Integrations</h3>
+                        <div class="chip-row">
+                            <span class="tech-chip">Shopify APIs</span>
+                            <span class="tech-chip">Third-Party Integrations</span>
+                            <span class="tech-chip">Automation</span>
+                        </div>
+                    </div>
+                    <div class="skill-group" data-reveal>
+                        <h3>Infrastructure</h3>
+                        <div class="chip-row">
+                            <span class="tech-chip">Server Administration</span>
+                            <span class="tech-chip">Deployment</span>
+                            <span class="tech-chip">Git / GitHub</span>
+                        </div>
+                    </div>
+                    <div class="skill-group" data-reveal>
+                        <h3>Desktop</h3>
+                        <div class="chip-row">
+                            <span class="tech-chip">Electron</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SERVICES ================= -->
+        <section class="section" id="services" aria-labelledby="services-heading">
+            <div class="wrap">
+                <div class="section-head" data-reveal>
+                    <span class="eyebrow">05 &middot; Services</span>
+                    <h2 id="services-heading">Engineering Services</h2>
+                    <p>What I build for clients and businesses.</p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card" data-reveal>
+                        <i class="fa-solid fa-window-maximize"></i>
+                        <h3>Web Applications</h3>
+                        <p>Scalable, secure, backend-driven web applications tailored to your business needs.</p>
+                    </div>
+                    <div class="service-card" data-reveal>
+                        <i class="fa-brands fa-shopify"></i>
+                        <h3>API Development &amp; Integrations</h3>
+                        <p>Custom API integrations and automation that connect your systems and cut manual work.</p>
+                    </div>
+                    <div class="service-card" data-reveal>
+                        <i class="fa-solid fa-database"></i>
+                        <h3>Database Systems</h3>
+                        <p>Schema design and normalization built to stay reliable under real, high-traffic use.</p>
+                    </div>
+                    <div class="service-card" data-reveal>
+                        <i class="fa-solid fa-laptop-code"></i>
+                        <h3>Desktop Applications</h3>
+                        <p>Cross-platform desktop tools built with Electron for specialized workflows.</p>
+                    </div>
+                    <div class="service-card" data-reveal>
+                        <i class="fa-solid fa-globe"></i>
+                        <h3>Websites</h3>
+                        <p>From landing pages to full corporate portals — responsive sites built to perform.</p>
+                    </div>
+                    <div class="service-card" data-reveal>
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                        <h3>Mobile Development</h3>
+                        <p>Native and hybrid mobile applications with intuitive, dependable user experiences.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CONTACT ================= -->
+        <section class="section" id="contact" aria-labelledby="contact-heading">
+            <div class="wrap">
+                <div class="contact-panel" data-reveal>
+                    <div>
+                        <span class="eyebrow">06 &middot; Contact</span>
+                        <h2 id="contact-heading">Have a system that needs building?</h2>
+                        <p>Let's turn the workflow into software. Reach out and let's talk about what you're building.</p>
+                    </div>
+                    <div class="contact-links">
+                        <a href="mailto:aloiceapamo@gmail.com"><i class="fa-solid fa-envelope"></i> aloiceapamo@gmail.com</a>
+                        <a href="https://wa.me/254790788994" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> +254 790 788 994</a>
+                        <a href="https://www.linkedin.com/in/alloys-chifu" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> Alloys Chifu on LinkedIn</a>
+                        <a href="https://github.com/Thechifualloys" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub Profile</a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <section class="services" id="section-3">
-        <div class="sobre_titulo">
-            <h1>Our Expertise</h1>
-            <p>Comprehensive Software Solutions</p>
-        </div>
-
-        <div class="my_service">
-            <ul aria-label="Navegação secundaria">
-                <li>
-                    <i class="fa-solid fa-window-maximize"></i>
-                    <h3>Web Applications</h3>
-                    <p>Scalable, secure, and lightning-fast webapps tailored to your business needs using modern stacks like MERN and Django.</p>
-                </li>
-                <li>
-                    <i class="fa-solid fa-laptop-code"></i>
-                    <h3>Desktop Apps</h3>
-                    <p>High-performance cross-platform desktop applications built with Electron and native technologies for a seamless experience.</p>
-                </li>
-                <li>
-                    <i class="fa-solid fa-globe"></i>
-                    <h3>Websites</h3>
-                    <p>From landing pages to complex corporate portals, we build responsive websites that capture your brand's essence.</p>
-                </li>
-                <li>
-                    <i class="fa-brands fa-shopify"></i>
-                    <h3>E-Commerce</h3>
-                    <p>Custom Shopify and headless commerce solutions designed to maximize conversions and streamline operations.</p>
-                </li>
-                <li>
-                    <i class="fa-solid fa-mobile-screen-button"></i>
-                    <h3>Mobile Development</h3>
-                    <p>Native and hybrid mobile applications that provide intuitive user experiences on both iOS and Android platforms.</p>
-                </li>
-                <li>
-                    <i class="fa-solid fa-gears"></i>
-                    <h3>UI/UX Design</h3>
-                    <p>User-centered design that focuses on usability, accessibility, and breathtaking aesthetics to keep users engaged.</p>
-                </li>
-            </ul>
-        </div>
-    </section>
-    <div class="my_resume" id="section-2">
-        <div class="sobre_titulo">
-            <h1>Experience</h1>
-            <p>Our Professional Journey</p>
-        </div>
-        <div class="resume_generica">
-            <h2 class="experience"><i class="fa-solid fa-handshake"></i> Experience</h2>
-            <div class="experience_content">
-                <div>
-                    <span>2022 - Present</span>
-                    <h3>Chiflloy: Software Development Firm</h3>
-                    <p>
-                        Leading the design and development of multiple full-stack applications.
-                        Architected scalable web ecosystems for diverse clients.
-                        Delivered high-performance desktop tools for specialized workflows.
-                        Managed end-to-end project lifecycles from conception to deployment.</p>
-                </div>
-                <div>
-                    <span>2022 - Current</span>
-                    <h3>E-Commerce Specialist</h3>
-                    <p>
-                        Successfully managed and optimized Shopify platforms for global brands.
-                        Integrated custom APIs and automated inventory management systems.
-                        Enhanced user conversion rates through data-driven UX improvements.
-                </div>
-                <div>
-                    <span>May 2022 - Sept 2022</span>
-                    <h3>IT Infrastructure Support</h3>
-                    <p>
-                        Configured and maintained mission-critical server environments.
-                        Provided technical guidance for enterprise-level software deployments.
-                        Optimized system performance for maximum uptime and security.</p>
-                </div>
-                <div>
-                    <span>Jan 2022 - Nov 2022</span>
-                    <h3>System Architecture Project</h3>
-                    <p>
-                        Developed "Regikom", a robust hostel management inquiry system.
-                        Focused on backend efficiency and database normalization for high-traffic use.</p>
-                </div>
-
-                <ul>
-                    <li><i class="fa-sharp fa-solid fa-circle"></i></li>
-                    <li><i class="fa-sharp fa-solid fa-circle"></i></li>
-                    <li><i class="fa-sharp fa-solid fa-circle"></i></li>
-                    <li><i class="fa-sharp fa-solid fa-circle"></i></li>
-                </ul>
-            </div>
-            <h2 class="education"><i class="fa-solid fa-book"></i>Background</h2>
-            <div class="education_content">
-                <div>
-                    <span>2017 - 2022</span>
-                    <h3>B.Sc. in Computer Science</h3>
-                    <p>Kenyatta University</p>
-                </div>
-                <div>
-                    <span>2016 - 2017</span>
-                    <h3>Advanced Computing</h3>
-                    <p>Likomatt Training Center</p>
-                </div>
-                <ul>
-                    <li><i class="fa-sharp fa-solid fa-circle"></i></li>
-                    <li><i class="fa-sharp fa-solid fa-circle"></i></li>
-                </ul>
-            </div>
-        </div>
-        <div class="cursos">
-            <div class="my_skills">
-                <h2><i class="fa-sharp fa-regular fa-star"></i>Technologies</h2>
-                <div class="skill_content">
-                    <h3>React / Vue</h3>
-                    <ul>
-                        <li><i class="fa-sharp fa-solid fa-star"></i></li>
-                        <li><i class="fa-sharp fa-solid fa-star"></i></li>
-                        <li><i class="fa-sharp fa-solid fa-star"></i></li>
-                        <li><i class="fa-sharp fa-solid fa-star"></i></li>
-                        <li><i class="fa-sharp fa-solid fa-star"></i></li>
-                    </ul>
-                </div>
-                <div class="skill_content">
-                    <h3>Node / Python</h3>
-                    <ul>
-                        <li><i class="fa-sharp fa-solid fa-star"></i></li>
-                        <li><i class="fa-sharp fa-solid fa-star"></i></li>
-                        <li><i class="fa-sharp fa-solid fa-star"></i></li>
-                        <li><i class="fa-sharp fa-solid fa-star"></i></li>
-                        <li><i class="fa-sharp fa-solid fa-star"></i></li>
-                    </ul>
-                </div>
-                <div class="skill_content">
-                    <h3>Desktop (Electron)</h3>
-                    <ul>
-                        <li><i class="fa-sharp fa-solid fa-star"></i></li>
-                        <li><i class="fa-sharp fa-solid fa-star"></i></li>
-                        <li><i class="fa-sharp fa-solid fa-star"></i></li>
-                        <li><i class="fa-sharp fa-solid fa-star"></i></li>
-                        <li><i class="fa-sharp fa-solid fa-star"></i></li>
-                    </ul>
-                </div>
-                <div class="skill_content">
-                    <h3>SQL / NoSQL</h3>
-                    <ul>
-                        <li><i class="fa-sharp fa-solid fa-star"></i></li>
-                        <li><i class="fa-sharp fa-solid fa-star"></i></li>
-                        <li><i class="fa-sharp fa-solid fa-star"></i></li>
-                        <li><i class="fa-sharp fa-solid fa-star"></i></li>
-                        <li><i class="fa-sharp fa-solid fa-star"></i></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="funfacts">
-                <h2><i class="fa-solid fa-chart-line"></i>Impact</h2>
-                <ul>
-                    <li>
-                        <i class="fa-solid fa-code"></i>
-                        <span>50+</span>
-                        <p>Projects Delivered</p>
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-clock"></i>
-                        <span>2022</span>
-                        <p>Inception Year</p>
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-users-gear"></i>
-                        <span>100%</span>
-                        <p>Client Satisfaction</p>
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-globe"></i>
-                        <span>12+</span>
-                        <p>Global Partners</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
     <footer>
-        <div class="footer-content">
-            <div class="left">
-                <div class="brand-info">
-                    <h3>Chiflloy</h3>
-                    <p>Est. 2022</p>
-                </div>
+        <div class="wrap footer-content">
+            <div class="footer-brand">
+                <strong>Chiflloy</strong> &middot; Alloys Chifu, Software Engineer<br>
+                &copy; <span id="year"></span> &middot; Built with HTML5, CSS3 &amp; JavaScript
             </div>
-            <div class="middle">
-                <span class="copyright">
-                    &copy; 2026 Chiflloy. All rights reserved.
-                </span>
-            </div>
-            <div class="right">
-                <img src="assets/chiflloylogo2.png" alt="Chiflloy Secondary Logo" style="width: 150px; height: auto;">
+            <div class="footer-social">
+                <a href="https://github.com/Thechifualloys" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/alloys-chifu" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://wa.me/254790788994" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="mailto:aloiceapamo@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
             </div>
         </div>
     </footer>
 
-
-    <script src="script.js?v=1.0.2"></script>
+    <script src="script.js?v=2.0.0"></script>
 </body>
 
 </html>
