@@ -1,7 +1,14 @@
 <?php
 /**
  * Database connection for the Chiflloy contact form.
- * Auto-provisions the database and messages table on first run.
+ *
+ * Fill these in with your own host's values (from your hosting control
+ * panel / phpMyAdmin) before deploying. Most hosts pre-create the database
+ * for you and only grant your DB user access to that one database — so
+ * this connects directly to DB_NAME rather than trying to create it.
+ *
+ * Run sql/schema.sql (via phpMyAdmin) once to create the `messages` table;
+ * this file also creates it automatically on first request as a fallback.
  */
 
 define('DB_HOST', 'localhost');
@@ -14,15 +21,6 @@ function get_db(): PDO {
     if ($pdo !== null) {
         return $pdo;
     }
-
-    // Connect without a database first so we can create it if missing.
-    $server = new PDO(
-        'mysql:host=' . DB_HOST . ';charset=utf8mb4',
-        DB_USER,
-        DB_PASS,
-        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-    );
-    $server->exec('CREATE DATABASE IF NOT EXISTS `' . DB_NAME . '` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci');
 
     $pdo = new PDO(
         'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4',
