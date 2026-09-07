@@ -2,8 +2,8 @@
 /**
  * Database connection for the Chiflloy contact form.
  *
- * Fill these in with your own host's values (from your hosting control
- * panel / phpMyAdmin) before deploying. Most hosts pre-create the database
+ * Real credentials live in db.config.php (git-ignored — copy
+ * db.config.sample.php to create it). Most hosts pre-create the database
  * for you and only grant your DB user access to that one database — so
  * this connects directly to DB_NAME rather than trying to create it.
  *
@@ -11,10 +11,7 @@
  * this file also creates it automatically on first request as a fallback.
  */
 
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'chiflloy_portfolio');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+require __DIR__ . '/db.config.php';
 
 function get_db(): PDO {
     static $pdo = null;
