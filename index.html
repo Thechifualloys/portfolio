@@ -468,13 +468,41 @@
                     <div>
                         <span class="eyebrow">06 &middot; Contact</span>
                         <h2 id="contact-heading">Have a system that needs building?</h2>
-                        <p>Let's turn the workflow into software. Reach out and let's talk about what you're building.</p>
+                        <p>Let's turn the workflow into software. Send a message and I'll get back to you.</p>
+
+                        <form id="contactForm" novalidate>
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label for="cf-name">Name</label>
+                                    <input type="text" id="cf-name" name="name" autocomplete="name" required maxlength="120">
+                                </div>
+                                <div class="form-field">
+                                    <label for="cf-email">Email</label>
+                                    <input type="email" id="cf-email" name="email" autocomplete="email" required maxlength="190">
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label for="cf-message">Message</label>
+                                <textarea id="cf-message" name="message" rows="5" required minlength="10" maxlength="5000"></textarea>
+                            </div>
+                            <div class="hp-field" aria-hidden="true">
+                                <label for="cf-website">Website</label>
+                                <input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off">
+                            </div>
+                            <button type="submit" class="btn-primary" id="cf-submit">
+                                <span class="btn-label">Send Message</span>
+                            </button>
+                            <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
+                        </form>
                     </div>
-                    <div class="contact-links">
-                        <a href="mailto:aloiceapamo@gmail.com"><i class="fa-solid fa-envelope"></i> aloiceapamo@gmail.com</a>
-                        <a href="https://wa.me/254790788994" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> +254 790 788 994</a>
-                        <a href="https://www.linkedin.com/in/alloys-chifu" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> Alloys Chifu on LinkedIn</a>
-                        <a href="https://github.com/Thechifualloys" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub Profile</a>
+                    <div>
+                        <span class="eyebrow" style="margin-bottom: 18px;">Or reach out directly</span>
+                        <div class="contact-links">
+                            <a href="mailto:aloiceapamo@gmail.com"><i class="fa-solid fa-envelope"></i> aloiceapamo@gmail.com</a>
+                            <a href="https://wa.me/254790788994" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> +254 790 788 994</a>
+                            <a href="https://www.linkedin.com/in/alloys-chifu" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> Alloys Chifu on LinkedIn</a>
+                            <a href="https://github.com/Thechifualloys" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub Profile</a>
+                        </div>
                     </div>
                 </div>
             </div>

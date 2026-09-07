@@ -822,9 +822,9 @@ nav { display: flex; align-items: center; gap: 30px; }
     border-radius: var(--radius);
     padding: 60px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.2fr 0.8fr;
     gap: 50px;
-    align-items: center;
+    align-items: start;
 }
 
 .contact-panel h2 { font-size: clamp(1.8rem, 3vw, 2.3rem); margin-bottom: 16px; letter-spacing: -0.02em; }
@@ -848,6 +848,87 @@ nav { display: flex; align-items: center; gap: 30px; }
 
 .contact-links a:hover { border-color: var(--accent); transform: translateX(4px); color: var(--accent); }
 .contact-links a i { color: var(--accent); width: 20px; text-align: center; }
+
+/* Contact form */
+#contactForm { margin-top: 30px; }
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.form-field { margin-bottom: 16px; }
+
+.form-field label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 8px;
+}
+
+.form-field input,
+.form-field textarea {
+    width: 100%;
+    background: var(--bg-raised);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    padding: 13px 14px;
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    resize: vertical;
+    transition: border-color 0.25s;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.form-field input.field-invalid,
+.form-field textarea.field-invalid {
+    border-color: rgba(255, 107, 107, 0.5);
+}
+
+.hp-field {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+#contactForm .btn-primary {
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+#contactForm .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.form-status {
+    margin-top: 14px;
+    font-family: var(--font-mono);
+    font-size: 0.86rem;
+    min-height: 1.2em;
+}
+
+.form-status.success { color: var(--ok); }
+.form-status.error { color: #ff6b6b; }
+
+@media (max-width: 560px) {
+    .form-row { grid-template-columns: 1fr; }
+}
 
 /* ===================================================================
    Footer

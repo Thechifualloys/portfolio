@@ -263,6 +263,78 @@ function initFooterYear() {
     if (el) el.textContent = new Date().getFullYear();
 }
 
+// Contact form: async submit with inline success/error feedback
+function initContactForm() {
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('cf-status');
+    const submitBtn = document.getElementById('cf-submit');
+    if (!form || !status || !submitBtn) return;
+
+    // Only flag a field as invalid after the visitor has actually left it,
+    // never on first render or while they're still typing.
+    ['name', 'email', 'message'].forEach((fieldName) => {
+        const field = form[fieldName];
+        if (!field) return;
+        field.addEventListener('blur', () => {
+            field.classList.toggle('field-invalid', field.value.trim() !== '' && !field.checkValidity());
+        });
+        field.addEventListener('input', () => {
+            if (field.classList.contains('field-invalid') && field.checkValidity()) {
+                field.classList.remove('field-invalid');
+            }
+        });
+    });
+
+    const btnLabel = submitBtn.querySelector('.btn-label');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        status.textContent = '';
+        status.className = 'form-status';
+
+        const data = {
+            name: form.name.value.trim(),
+            email: form.email.value.trim(),
+            message: form.message.value.trim(),
+            website: form.website.value
+        };
+
+        if (!data.name || !data.email || data.message.length < 10) {
+            status.textContent = 'Please fill in your name, a valid email, and a message of at least 10 characters.';
+            status.className = 'form-status error';
+            return;
+        }
+
+        submitBtn.disabled = true;
+        if (btnLabel) btnLabel.textContent = 'Sending...';
+
+        try {
+            const res = await fetch('contact.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            const result = await res.json().catch(() => null);
+
+            if (res.ok && result && result.success) {
+                status.textContent = "Message sent — I'll get back to you soon.";
+                status.className = 'form-status success';
+                form.reset();
+            } else {
+                status.textContent = (result && result.error) || 'Something went wrong. Please try again or email me directly.';
+                status.className = 'form-status error';
+            }
+        } catch (err) {
+            status.textContent = "Couldn't reach the server. Please try again or email me directly.";
+            status.className = 'form-status error';
+        } finally {
+            submitBtn.disabled = false;
+            if (btnLabel) btnLabel.textContent = 'Send Message';
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initBackgroundNetwork();
     initMobileMenu();
@@ -271,4 +343,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initReadMore();
     initTerminal();
     initFooterYear();
+    initContactForm();
 });
